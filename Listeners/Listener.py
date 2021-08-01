@@ -9,9 +9,10 @@ import threading
 
 # 监听指定用户的新视频/动态
 # listen to some user's new video/dynamic
-class Listener:
+class Listener(threading.Thread):
 
     def __init__(self, uid: int, queue: Queue, condition: threading.Condition, credential: Credential = None):
+        super().__init__()
         self.user = user.User(uid, credential)
         # event queue
         self.q = queue
