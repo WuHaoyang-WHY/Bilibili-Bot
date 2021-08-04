@@ -4,14 +4,14 @@
 from bilibili_api import user, Credential, sync
 import time
 from queue import Queue
-import threading
+import asyncio
 
 
 # 监听指定用户的新视频/动态
 # listen to some user's new video/dynamic
-class Listener(threading.Thread):
+class Listener():
 
-    def __init__(self, uid: int, queue: Queue, condition: threading.Condition, credential: Credential = None):
+    def __init__(self, uid: int, queue: Queue, condition: asyncio.Condition, credential: Credential = None):
         super().__init__()
         self.user = user.User(uid, credential)
         # event queue
